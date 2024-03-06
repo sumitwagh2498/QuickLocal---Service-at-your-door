@@ -1,0 +1,116 @@
+﻿@model UserView
+
+@{
+    ViewData["Title"] = "UpdateUser";
+}
+
+<style>
+    body {
+        background-color: #EBEDEF;
+    }
+    .card {
+        border: 1px solid #ddd;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: box-shadow 0.3s ease-in-out;
+        width: 55rem;
+    }
+
+        .card:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+    .form-control {
+        border: 1px solid #ced4da;
+        transition: border-color 0.3s ease-in-out;
+    }
+
+        .form-control:focus {
+            border-color: #007bff;
+        }
+
+    .btn-primary {
+        width: 100%;
+        margin-top: 6px;
+        background-color: #007bff;
+        border-color: #007bff;
+        transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out, color 0.3s ease-in-out;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+            color: #fff;
+        }
+
+    .back-to-list {
+        display: inline-block;
+        margin-top: 10px;
+        text-decoration: none;
+        color: #007bff;
+        transition: color 0.3s ease-in-out;
+        font-weight: bold; /* Added for a bolder text */
+    }
+
+        .back-to-list:hover {
+            color: #0056b3;
+        }
+</style>
+
+<h1 class="text-center">Update User</h1>
+
+<div class="container mt-4">
+    <div class="card mx-auto" style="width: 18rem;">
+        <div class="card-body">
+            <h4 class="card-title">User Information</h4>
+            <hr />
+
+            <form asp-action="UpdateUser">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id" />
+
+                <div class="form-group">
+                    <label asp-for="Firstname" class="control-label">First Name</label>
+                    <input asp-for="Firstname" class="form-control" />
+                    <span asp-validation-for="Firstname" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Lastname" class="control-label">Last Name</label>
+                    <input asp-for="Lastname" class="form-control" />
+                    <span asp-validation-for="Lastname" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Email" class="control-label">Email</label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="PhoneNumber" class="control-label">Phone Number</label>
+                    <input asp-for="PhoneNumber" class="form-control" />
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Role" class="control-label">Role</label>
+                    <input asp-for="Role" class="form-control" />
+                    <span asp-validation-for="Role" class="text-danger"></span>
+                </div>
+
+                <div class="form-group text-center">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="text-center mt-3">
+    <a asp-action="Index" class="back-to-list">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

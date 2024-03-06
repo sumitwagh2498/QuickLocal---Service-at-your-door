@@ -1,0 +1,112 @@
+﻿@model IEnumerable<UserView>
+
+@{
+    ViewData["Title"] = "GetAllUsers";
+}
+
+<style>
+    body {
+        background-color: #EBEDEF;
+    }
+    .btn-edit,
+    .btn-delete,
+    .btn-details {
+        margin-right: 5px;
+        transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+    }
+
+    .btn-edit {
+        background-color: #3498db;
+        border-color: #3498db;
+        color: #fff;
+    }
+
+    .btn-delete {
+        background-color: #e74c3c;
+        border-color: #e74c3c;
+        color: #fff;
+    }
+
+    .btn-details {
+        background-color: #2ecc71;
+        border-color: #2ecc71;
+        color: #fff;
+    }
+
+    .btn-edit:hover {
+        background-color: #2980b9;
+        border-color: #2980b9;
+        color: #fff;
+    }
+
+    .btn-delete:hover {
+        background-color: #c0392b;
+        border-color: #c0392b;
+        color: #fff;
+    }
+
+    .btn-details:hover {
+        background-color: #27ae60;
+        border-color: #27ae60;
+        color: #fff;
+    }
+
+    .table {
+        border-collapse: collapse;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: box-shadow 0.3s ease-in-out;
+        margin-top: 20px;
+    }
+
+        .table th,
+        .table td {
+            border: 1px solid #dee2e6;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .table th {
+            background-color: #f8f9fa;
+        }
+
+        .table:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+</style>
+
+
+<h1 class="title">All Users</h1>
+
+<div class="container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Firstname)</th>
+                <th>@Html.DisplayNameFor(model => model.Lastname)</th>
+                <th>@Html.DisplayNameFor(model => model.Email)</th>
+                <th>@Html.DisplayNameFor(model => model.PhoneNumber)</th>
+                <th>@Html.DisplayNameFor(model => model.Role)</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Firstname)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Lastname)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                    <td>@Html.DisplayFor(modelItem => item.PhoneNumber)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Role)</td>
+                    <td>
+                        <div class="btn-group">
+                            <a asp-action="UpdateUser" asp-route-id="@item.Id" class="btn  btn-edit">Edit</a>
+                            <a asp-action="UserDetails" asp-route-id="@item.Id" class="btn btn-details">Details</a>
+                            <a asp-action="DeleteUser" asp-route-id="@item.Id" class="btn btn-delete">Delete</a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,40 @@
+// OrderService.java
+package com.quicklocal.service;
+
+import com.quicklocal.model.Order;
+
+public interface OrderService {
+    Order getOrderById(Integer orderId);
+}
+
+// EmailService.java
+package com.quicklocal.service;
+
+import com.quicklocal.model.Order;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.stereotype.Service;
+
+@Service
+public class EmailService {
+
+    @Autowired
+    private JavaMailSender javaMailSender;
+
+    @Autowired
+    private OrderService orderService;
+
+    public void sendEmail(Integer orderId) {
+        Order order = orderService.getOrderById(orderId);
+
+        if (order != null) {
+            SimpleMailMessage mailMessage = new SimpleMailMessage();
+            mailMessage.setTo(order.getEmail());
+            mailMessage.setSubject("Your Order Details");
+            mailMessage.setText("Your order details: " + order.getDescription());
+
+            javaMailSender.send(mailMessage);
+        }
+    }
+}

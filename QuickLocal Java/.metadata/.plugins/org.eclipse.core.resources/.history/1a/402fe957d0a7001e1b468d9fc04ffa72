@@ -1,0 +1,13 @@
+package com.quicklocal;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class QuicklocalBackendApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(QuicklocalBackendApplication.class, args);
+	}
+
+}

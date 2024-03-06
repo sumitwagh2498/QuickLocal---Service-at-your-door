@@ -1,0 +1,72 @@
+﻿@model UserView
+
+@{
+    ViewData["Title"] = "UserDetails";
+}
+
+<style>
+    body {
+        background-color: #EBEDEF;
+    }
+    .card {
+        border: 1px solid #ddd;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: box-shadow 0.3s ease-in-out;
+        width: 51rem;
+        margin: auto; /* Center the card */
+        margin-top: 20px;
+    }
+
+        .card:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+    .card-header {
+        background-color: #007bff;
+        color: #fff;
+        font-weight: bold;
+    }
+
+    .card-body dt {
+        font-weight: bold;
+    }
+
+    .btn-edit,
+    .btn-back {
+        margin-right: 5px;
+        transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+    }
+
+        .btn-edit:hover,
+        .btn-back:hover {
+            background-color: #007bff;
+            border-color: #007bff;
+            color: #fff;
+        }
+</style>
+
+
+<div class="card">
+    <div class="card-header">
+        <h3> User Details</h3>
+    </div>
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Firstname)</dt>
+            <dd class="col-sm-10">@Html.DisplayFor(model => model.Firstname)</dd>
+
+            <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Lastname)</dt>
+            <dd class="col-sm-10">@Html.DisplayFor(model => model.Lastname)</dd>
+
+            <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Email)</dt>
+            <dd class="col-sm-10">@Html.DisplayFor(model => model.Email)</dd>
+
+            <dt class="col-sm-2">@Html.DisplayNameFor(model => model.PhoneNumber)</dt>
+            <dd class="col-sm-10">@Html.DisplayFor(model => model.PhoneNumber)</dd>
+
+        </dl>
+    </div>
+    <div class="card-footer">
+        <a asp-action="GetAllUsers" class="btn btn-secondary btn-back">Back to List</a>
+    </div>
+</div>

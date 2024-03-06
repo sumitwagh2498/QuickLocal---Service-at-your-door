@@ -1,0 +1,144 @@
+﻿@model IEnumerable<QuickLocal.Models.AddService>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<style>
+    body {
+        background-color: #EBEDEF;
+    }
+    .table {
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: box-shadow 0.3s ease-in-out;
+    }
+
+        .table:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+    th, td {
+        text-align: center;
+    }
+
+    .btn3 {
+        margin-top: 3px;
+    }
+
+    .table-actions {
+        text-align: center;
+        margin-top: 10px; /* Add margin for better spacing */
+    }
+
+        .table-actions a {
+            margin: 0 5px;
+            text-decoration: none; /* Remove underline */
+            display: inline-block; /* Ensure buttons appear in a row */
+            padding: 5px 10px; /* Add padding for better appearance */
+            border-radius: 5px; /* Add border radius for rounded corners */
+            transition: background-color 0.3s ease-in-out;
+        }
+
+            /* Green Edit Button */
+            .table-actions a.edit-btn {
+                color: #fff;
+                background-color: #28a745;
+                border: 1px solid #28a745;
+            }
+
+                /* Hover effect for Edit Button */
+                .table-actions a.edit-btn:hover {
+                    background-color: #218838; /* Darker color on hover */
+                    border-color: #218838; /* Darker border color on hover */
+                }
+
+            /* Red Delete Button with Margin-top */
+            .table-actions a.delete-btn {
+                color: #fff;
+                background-color: #dc3545;
+                border: 1px solid #dc3545;
+                margin-top: 5px;
+            }
+
+                /* Hover effect for Delete Button */
+                .table-actions a.delete-btn:hover {
+                    background-color: #c82333; /* Darker color on hover */
+                    border-color: #c82333; /* Darker border color on hover */
+                }
+
+            /* Blue Details Button with Hover effect */
+            .table-actions a.details-btn {
+                color: #fff;
+                background-color: #007bff;
+                border: 1px solid #007bff;
+            }
+
+                .table-actions a.details-btn:hover {
+                    background-color: #0056b3; /* Darker color on hover */
+                    border-color: #0056b3; /* Darker border color on hover */
+                }
+</style>
+
+<h1 class="text-center">Index</h1>
+
+<table class="table table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NameOfProvider)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Services)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.City)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PinCode)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NameOfProvider)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Services)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.City)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PinCode)
+                </td>
+                <td class="table-actions">
+                    <a class="edit-btn" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                    <a class="details-btn" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                    <a class="delete-btn btn3" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,39 @@
+// ServicesController.java
+package com.quicklocal.controller;
+
+import com.quicklocal.dto.ServicesDto;
+import com.quicklocal.model.ServicesModel;
+import com.quicklocal.service.ServicesService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.io.IOException;
+import java.util.List;
+
+@RestController
+@RequestMapping("/services")
+public class ServicesController {
+
+    @Autowired
+    private ServicesService servicesService;
+
+    @PostMapping("/add")
+    public ResponseEntity<ServicesModel> addService(@ModelAttribute ServicesDto servicesDto) {
+        try {
+            ServicesModel savedService = servicesService.saveService(servicesDto);
+            return new ResponseEntity<>(savedService, HttpStatus.CREATED);
+        } catch (IOException e) {
+            // Handle exception, for example, log the error
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<ServicesModel>> getAllServices() {
+        List<ServicesModel> services = servicesService.getAllServices();
+        return new ResponseEntity<>(services, HttpStatus.OK);
+    }
+}

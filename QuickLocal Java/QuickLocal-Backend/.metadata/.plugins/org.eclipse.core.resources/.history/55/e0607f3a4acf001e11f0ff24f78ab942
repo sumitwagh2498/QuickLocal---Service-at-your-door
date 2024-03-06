@@ -1,0 +1,98 @@
+package com.quicklocal.service;
+
+import com.quicklocal.dto.OrderDto;
+import com.quicklocal.exception.ServiceServiceException;
+import com.quicklocal.model.Order;
+import com.quicklocal.model.Service;
+import com.quicklocal.repository.OrderRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+
+import java.util.List;
+import java.util.Optional;
+
+@org.springframework.stereotype.Service
+public class OrderService {
+
+    private final OrderRepository orderRepository;
+    private final ServiceService serviceService;
+    private final JavaMailSender emailSender; // Inject JavaMailSender
+
+    @Autowired
+    public OrderService(OrderRepository orderRepository, ServiceService serviceService, JavaMailSender emailSender) {
+        this.orderRepository = orderRepository;
+        this.serviceService = serviceService;
+        this.emailSender = emailSender; // Initialize JavaMailSender
+    }
+
+    public Order placeOrder(OrderDto orderDto, Integer serviceProviderId) throws ServiceServiceException {
+        Service serviceProvider = serviceService.findById(serviceProviderId);
+        if (serviceProvider != null) {
+            Order orderEntity = new Order();
+            orderEntity.setName(orderDto.getName());
+            orderEntity.setPhone(orderDto.getPhone());
+            orderEntity.setAddress(orderDto.getAddress());
+            orderEntity.setEmail(orderDto.getEmail());
+            orderEntity.setPinCode(orderDto.getPinCode());
+            orderEntity.setAvailableDate(orderDto.getAvailableDate());
+            orderEntity.setAvailableTime(orderDto.getAvailableTime());
+            orderEntity.setServiceProvider(serviceProvider);
+            return orderRepository.save(orderEntity);
+        }
+        return null;
+    }
+
+    public void updateOrderStatus(Integer orderId, String status) {
+        Optional<Order> optionalOrder = orderRepository.findById(orderId);
+        if (optionalOrder.isPresent()) {
+            Order order = optionalOrder.get();
+            order.setStatus(status); // Assuming the Order entity has a 'status' field
+            orderRepository.save(order);
+        } else {
+            // Handle case where order is not found
+            throw new RuntimeException("Order not found with ID: " + orderId);
+        }
+    }
+
+    public void sendAcknowledgmentEmail(Integer orderId) {
+        Optional<Order> optionalOrder = orderRepository.findById(orderId);
+        if (optionalOrder.isPresent()) {
+            Order order = optionalOrder.get();
+            String recipientEmail = order.getEmail();
+            String subject = "Order Acknowledgment";
+            String text = "Thank you for placing your order with us!";
+            // Create a simple email message
+            SimpleMailMessage message = new SimpleMailMessage();
+            message.setTo(recipientEmail);
+            message.setSubject(subject);
+            message.setText(text);
+            // Send email
+            emailSender.send(message);
+        } else {
+            // Handle case where order is not found
+            throw new RuntimeException("Order not found with ID: " + orderId);
+        }
+    }
+
+    public List<Order> getOrdersByServiceProviderId(Integer serviceProviderId) {
+        return orderRepository.findByServiceProviderId(serviceProviderId);
+    }
+
+    public void rejectOrder(Integer orderId) {
+        Optional<Order> optionalOrder = orderRepository.findById(orderId);
+        if (optionalOrder.isPresent()) {
+            Order order = optionalOrder.get();
+            order.setStatus("Rejected"); // Update status to 'Rejected'
+            orderRepository.save(order);
+        } else {
+            // Handle case where order is not found
+            throw new RuntimeException("Order not found with ID: " + orderId);
+        }
+    }
+
+    
+    public Order getOrderById(Integer orderId) {
+        return orderRepository.findById(orderId).orElse(null);
+    }
+}

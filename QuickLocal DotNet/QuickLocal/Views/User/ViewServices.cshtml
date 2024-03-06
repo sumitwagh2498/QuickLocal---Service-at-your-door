@@ -1,0 +1,168 @@
+﻿@model IEnumerable<QuickLocal.Models.AddService>
+
+@{
+    ViewData["Title"] = "ViewServices";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body {
+            background-color: #EBEDEF;
+        }
+        .card {
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+
+            .card:hover {
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #fff;
+            background-color: #007bff;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            padding: 10px 20px;
+            text-align: center;
+        }
+
+        .card-text {
+            font-size: 1rem;
+            color: #333;
+        }
+
+        .btn-primary {
+            margin-top: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.3s ease-in-out;
+            width: 100%;
+        }
+
+            .btn-primary:hover {
+                background-color: #0056b3;
+            }
+
+        .service-label {
+            background-color: #ffc107;
+            color: #333;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 5px;
+        }
+
+        .row {
+            margin: 0 auto;
+            max-width: 1200px;
+            padding: 20px;
+        }
+
+        .search-form {
+            margin-bottom: 20px;
+        }
+
+        .form-control {
+            border-radius: 20px !important;
+            height: 46px;
+            margin-top: 10px;
+        }
+
+        .btn-search {
+            margin-left: 7px;
+            border-radius: 20px !important;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="text-center mt-4">View Services</h1>
+
+    <!-- Search form -->
+    <div class="row justify-content-center search-form">
+        <div class="col-md-6">
+            <form method="get" action="@Url.Action("ViewServices", "User")">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="pinCode" placeholder="Enter PinCode...">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary btn-search" type="submit">Search</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Display services -->
+    <div class="row justify-content-center">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-3 mb-3">
+                <div class="card">
+                    <h2 class="card-title">
+                        @Html.DisplayFor(modelItem => item.Services)
+                    </h2>
+                    <div class="card-body">
+                        <p class="card-text">Provider: @Html.DisplayFor(modelItem => item.NameOfProvider)</p>
+                        <p class="card-text">Phone: @Html.DisplayFor(modelItem => item.Phone)</p>
+                        <p class="card-text">Address: @Html.DisplayFor(modelItem => item.Address)</p>
+                        <p class="card-text">City: @Html.DisplayFor(modelItem => item.City)</p>
+                        <p class="card-text">Pin Code: @Html.DisplayFor(modelItem => item.PinCode)</p>
+                        <div class="text-center">
+                            <a href="#" class="btn btn-primary book-btn" data-service-id="@item.Id">Book</a>
+                            <form id="form-@item.Id" class="hidden-form" method="post" action="@Url.Action("Create", "ServiceBookings")">
+                                @Html.Hidden("serviceId", item.Id)
+                                <!-- Other form fields go here -->
+                                @Html.AntiForgeryToken()
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    @section Scripts {
+        <script>
+            $(document).ready(function () {
+                $(".book-btn").click(function (e) {
+                    e.preventDefault();
+
+                    var serviceId = $(this).data("service-id");
+                    var form = $("#form-" + serviceId);
+
+                    $.ajax({
+                        url: form.attr("action"),
+                        type: "POST",
+                        data: form.serialize(),
+                        success: function (response) {
+                            // If the booking was successful, redirect to the Create action
+                            window.location.href = "@Url.Action("Create", "ServiceBookings")";
+                        },
+                        error: function (xhr, status, error) {
+                            alert("Error booking service: " + error);
+                        }
+                    });
+                });
+            });
+        </script>
+    }
+
+    }
+</body>
+</html>

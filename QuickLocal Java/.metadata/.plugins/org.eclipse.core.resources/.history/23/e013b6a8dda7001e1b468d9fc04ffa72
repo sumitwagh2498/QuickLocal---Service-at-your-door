@@ -1,0 +1,44 @@
+// ServicesService.java
+package com.quicklocal.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.quicklocal.model.ServicesModel;
+import com.quicklocal.repository.ServicesRepository;
+import com.quicklocal.dto.ServicesDto;
+
+import java.util.List;
+
+//ServicesService.java
+@Service
+public class ServicesService {
+
+ @Autowired
+ private ServicesRepository servicesRepository;
+
+ @Autowired
+ private ServiceRepository serviceRepository;
+
+ public ServicesModel saveService(ServicesDto servicesDto, int providerId) {
+     ServicesModel servicesModel = new ServicesModel();
+     // Map other fields from ServicesDto to ServicesModel
+     servicesModel.setName(servicesDto.getName());
+     servicesModel.setPhone(servicesDto.getPhone());
+     servicesModel.setEmail(servicesDto.getEmail());
+     servicesModel.setService(servicesDto.getService());
+     servicesModel.setAddress(servicesDto.getAddress());
+     servicesModel.setCity(servicesDto.getCity());
+     servicesModel.setPinCode(servicesDto.getPinCode());
+
+     // Set the provider based on the provided providerId
+     Service provider = serviceRepository.findById(providerId).orElseThrow(() -> new EntityNotFoundException("Service provider not found"));
+     servicesModel.setProvider(provider);
+
+     return servicesRepository.save(servicesModel);
+ }
+
+ public List<ServicesModel> getAllServices() {
+     return servicesRepository.findAll();
+ }
+}

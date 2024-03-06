@@ -1,0 +1,53 @@
+.contact3 {
+    padding: 50px 0;
+  }
+  
+  .card-shadow {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  .contact-box {
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+  }
+  
+  .contact-box h1 {
+    font-weight: light;
+    font-size: 24px;
+    text-align: center;
+  }
+  
+  .contact-box img {
+    width: 100%;
+    border-radius: 5px;
+  }
+  
+  .contact-box form {
+    margin-top: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-control {
+    box-shadow: none;
+    border-radius: 4px;
+  }
+  
+  .btn-danger-gradiant {
+    background: linear-gradient(to right, #ff416c, #ff4b2b);
+    border: none;
+  }
+  
+  .btn-danger-gradiant:hover,
+  .btn-danger-gradiant:focus {
+    background: linear-gradient(to right, #ff4b2b, #ff416c);
+  }
+  
+  @media (max-width: 768px) {
+    .contact-box {
+      margin-top: 20px;
+    }
+  }
+  

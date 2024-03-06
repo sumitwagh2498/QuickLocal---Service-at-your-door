@@ -1,0 +1,73 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model IEnumerable<IdentityRole>
+
+<style>
+    body {
+        background-color: #EBEDEF;
+    }
+    h1 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    p {
+        text-align: center;
+    }
+
+    .container {
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    table {
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: box-shadow 0.3s ease-in-out;
+        margin-top: 20px;
+        width: 100%;
+    }
+
+    th, td {
+        border: 1px solid #dee2e6;
+        padding: 12px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #007bff;
+        color: #fff;
+    }
+
+    tr:hover {
+        background-color: #f8f9fa;
+    }
+
+    .btn-primary {
+        width: 100%;
+    }
+</style>
+
+<div class="container">
+    <h1>View Roles</h1>
+    <p>
+        <a asp-action="Create" class="btn btn-primary">Create Role</a>
+    </p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Role Name
+                </th>
+               
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

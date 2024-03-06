@@ -1,0 +1,22 @@
+package com.quicklocal.controller;
+
+import com.quicklocal.model.Email;
+import com.quicklocal.service.EmailService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@CrossOrigin
+public class EmailController {
+
+    @Autowired
+    private EmailService emailService;
+
+    @PostMapping("/send-email")
+    public void sendEmail(@RequestBody Email email) {
+        emailService.sendEmail(email);
+    }
+}

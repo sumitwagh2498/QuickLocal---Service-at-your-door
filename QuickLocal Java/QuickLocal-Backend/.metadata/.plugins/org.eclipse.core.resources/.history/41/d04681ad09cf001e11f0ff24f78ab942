@@ -1,0 +1,5 @@
+package com.quicklocal.service;
+
+public class EmailService {
+
+}

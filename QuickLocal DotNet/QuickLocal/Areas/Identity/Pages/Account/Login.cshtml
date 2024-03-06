@@ -1,0 +1,97 @@
+﻿@page
+@model LoginModel
+
+@{
+    ViewData["Title"] = "Log in";
+}
+
+<style>
+    body {
+        background-color: #EBEDEF;
+    }
+
+    .card {
+        border: 1px grey solid;
+    }</style>
+
+<h1 class="text-center">@ViewData["Title"]</h1>
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card shadow p-3 mb-5 bg-white rounded">
+            <div class="card-body">
+                <form id="account" method="post">
+                    
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" />
+                        <label asp-for="Input.Email" class="form-label"></label>
+                        <span asp-validation-for="Input.Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" />
+                        <label asp-for="Input.Password" class="form-label"></label>
+                        <span asp-validation-for="Input.Password" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <div class="form-check">
+                            <input class="form-check-input" asp-for="Input.RememberMe" />
+                            <label class="form-check-label" asp-for="Input.RememberMe">Remember me</label>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Log in</button>
+                    </div>
+                    <div class="mb-3">
+                        <p class="text-center custom-link">
+                            <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
+                        </p>
+                        <p class="text-center custom-link">
+                            <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
+                        </p>
+                        <p class="text-center custom-link">
+                            <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
+                        </p>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    /* Styling for the links */
+    .custom-link a {
+        color: #007bff; /* Set your preferred link color */
+        text-decoration: none;
+        transition: color 0.3s ease-in-out;
+    }
+
+        .custom-link a:hover {
+            color: #0056b3; /* Set your preferred link color on hover */
+            text-decoration: underline;
+        }
+
+    /* Styling for the button */
+    .custom-button {
+        width: 100%;
+    }
+
+        .custom-button button {
+            width: 100%;
+            background-color: #007bff; /* Set your preferred button color */
+            color: #fff; /* Set your preferred text color for the button */
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+        }
+
+            .custom-button button:hover {
+                background-color: #0056b3; /* Set your preferred button color on hover */
+            }
+
+</style>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

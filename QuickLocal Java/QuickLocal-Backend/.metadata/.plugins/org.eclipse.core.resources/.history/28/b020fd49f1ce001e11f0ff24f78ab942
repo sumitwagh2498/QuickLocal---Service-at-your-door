@@ -1,0 +1,5 @@
+package com.quicklocal.repository;
+
+public interface OderRepository {
+
+}

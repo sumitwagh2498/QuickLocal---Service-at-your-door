@@ -1,0 +1,22 @@
+// UserOrdersService.java
+
+import com.quicklocal.model.ServicesModel;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import java.util.List;
+
+@Service
+public class UserOrdersService {
+
+    @Autowired
+    private ServiceRepository serviceRepository;
+
+    public List<ServicesModel> getAllUserOrders() {
+        return serviceRepository.findAll();
+    }
+
+    public List<ServicesModel> searchServices(String serviceName, String city) {
+        // Implement logic to search services by service name and city
+        return serviceRepository.findByServiceNameContainingIgnoreCaseAndCityContainingIgnoreCase(serviceName, city);
+    }
+}

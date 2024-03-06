@@ -1,0 +1,13 @@
+package com.quicklocal.service;
+
+import com.quicklocal.model.ServicesModel;
+
+public class ServicesService {
+
+	public void update(ServicesModel serviceModel) {
+		@Autowired
+		private CustomerRepository customerRepository;
+	    .save(customer);
+	}
+	
+}

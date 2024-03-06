@@ -1,0 +1,24 @@
+package com.quicklocal.model;
+
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "orders")
+public class OrderEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    private String name;
+    private String phone;
+    private String address;
+    private String pinCode;
+    private String availableDate;
+    private String availableTime;
+
+    @ManyToOne
+    @JoinColumn(name = "service_provider_id")
+    private ServiceProvider serviceProvider;
+
+    // Getters and setters
+}

@@ -1,0 +1,25 @@
+// UserOrderService.java
+
+package com.quicklocal.service;
+
+import com.quicklocal.model.ServicesModel;
+import com.quicklocal.repository.UserOrdersRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class UserOrderService {
+
+    private final UserOrdersRepository userOrdersRepository;
+
+    @Autowired
+    public UserOrderService(UserOrdersRepository userOrdersRepository) {
+        this.userOrdersRepository = userOrdersRepository;
+    }
+
+    public List<ServicesModel> getServicesByPinCode(String pinCode) {
+        return userOrdersRepository.findByPinCode(pinCode);
+    }
+}

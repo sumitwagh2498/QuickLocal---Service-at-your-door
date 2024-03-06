@@ -1,0 +1,38 @@
+// ServicesService.java
+package com.quicklocal.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.quicklocal.model.ServicesModel;
+import com.quicklocal.repository.ServicesRepository;
+import com.quicklocal.dto.ServicesDto;
+
+import java.util.List;
+
+@Service
+public class ServicesService {
+
+    @Autowired
+    private ServicesRepository servicesRepository;
+
+    public ServicesModel saveService(ServicesDto servicesDto) {
+        ServicesModel servicesModel = new ServicesModel();
+        // Map all fields from ServicesDto to ServicesModel
+        servicesModel.setName(servicesDto.getName());
+        servicesModel.setPhone(servicesDto.getPhone());
+        servicesModel.setEmail(servicesDto.getEmail());
+        servicesModel.setService(servicesDto.getService());
+        servicesModel.setAddress(servicesDto.getAddress());
+        servicesModel.setCity(servicesDto.getCity());
+        servicesModel.setPinCode(servicesDto.getPinCode());
+
+        // You can add other mappings here if needed
+
+        return servicesRepository.save(servicesModel);
+    }
+
+    public List<ServicesModel> getAllServices() {
+        return servicesRepository.findAll();
+    }
+}

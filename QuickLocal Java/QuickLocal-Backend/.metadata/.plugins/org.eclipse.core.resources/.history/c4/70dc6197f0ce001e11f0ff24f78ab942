@@ -1,0 +1,71 @@
+package com.quicklocal.model;
+
+import java.util.Date;
+
+public class Order {
+    private String name;
+    private String phone;
+    private String address;
+    private String pinCode;
+    private Date availableDate;
+    private String availableTime;
+
+    // Constructors, getters, and setters
+    public Order(String name, String phone, String address, String pinCode, Date availableDate, String availableTime) {
+        this.name = name;
+        this.phone = phone;
+        this.address = address;
+        this.pinCode = pinCode;
+        this.availableDate = availableDate;
+        this.availableTime = availableTime;
+    }
+
+    // Getters and setters
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPinCode() {
+        return pinCode;
+    }
+
+    public void setPinCode(String pinCode) {
+        this.pinCode = pinCode;
+    }
+
+    public Date getAvailableDate() {
+        return availableDate;
+    }
+
+    public void setAvailableDate(Date availableDate) {
+        this.availableDate = availableDate;
+    }
+
+    public String getAvailableTime() {
+        return availableTime;
+    }
+
+    public void setAvailableTime(String availableTime) {
+        this.availableTime = availableTime;
+    }
+}

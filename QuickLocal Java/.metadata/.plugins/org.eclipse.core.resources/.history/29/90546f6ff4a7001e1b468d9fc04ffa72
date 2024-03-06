@@ -1,0 +1,13 @@
+package com.quicklocal.repository;
+
+import com.quicklocal.model.User;
+import com.quicklocal.model.UserOrder;
+import com.quicklocal.service.UserOrdersService;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface UserOrdersRepository extends JpaRepository<UserOrdersService, Integer> {
+  User =  void findByUserId(Integer userId);
+}

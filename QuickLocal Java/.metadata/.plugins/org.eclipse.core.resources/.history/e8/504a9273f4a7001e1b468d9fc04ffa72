@@ -1,0 +1,43 @@
+package com.quicklocal.service;
+
+import com.quicklocal.model.ServicesModel;
+import com.quicklocal.model.UserOrder;
+import com.quicklocal.repository.ServicesRepository;
+import com.quicklocal.repository.UserOrdersRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.Optional;
+
+@Service
+public class UserOrdersService {
+
+    @Autowired
+    private UserOrdersRepository userOrdersRepository;
+
+    @Autowired
+    private ServicesRepository servicesRepository;
+
+    public Iterable<ServicesModel> getAllUserOrders() {
+        return userOrdersRepository.findAll();
+    }
+
+    public void addServiceToUserOrder(Integer userId, Integer serviceId) {
+        // Fetch the user order by user ID
+        Optional<UserOrder> userOrderOptional = userOrdersRepository.findById(userId);
+
+        // Fetch the service by service ID
+        Optional<ServicesModel> serviceOptional = servicesRepository.findById(serviceId);
+
+        if (userOrderOptional.isPresent() && serviceOptional.isPresent()) {
+            // Add the service to the user's order
+            UserOrder userOrder = userOrderOptional.get();
+            ServicesModel service = serviceOptional.get();
+
+            userOrder.getServices().add(service);
+
+            // Save the updated user order
+            userOrdersRepository.save(userOrder);
+        }
+    }
+}

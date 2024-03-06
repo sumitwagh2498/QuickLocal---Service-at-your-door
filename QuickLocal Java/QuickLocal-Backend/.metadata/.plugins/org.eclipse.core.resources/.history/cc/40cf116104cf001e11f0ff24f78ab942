@@ -1,0 +1,46 @@
+package com.quicklocal.service;
+
+import com.quicklocal.dto.OrderDto;
+import com.quicklocal.exception.ServiceServiceException;
+import com.quicklocal.model.Order;
+import com.quicklocal.model.Service;
+import com.quicklocal.repository.OrderRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class OrderService {
+
+    private final OrderRepository orderRepository;
+    private final ServiceService serviceService;
+
+    @Autowired
+    public OrderService(OrderRepository orderRepository, ServiceService serviceProviderService) {
+        this.orderRepository = orderRepository;
+        this.serviceService = serviceProviderService;
+    }
+
+    public Order placeOrder(OrderDto orderDto, Integer serviceProviderId) throws ServiceServiceException {
+        Service serviceProvider = serviceService.findById(serviceProviderId);
+        if (serviceProvider != null) {
+            Order orderEntity = new Order();
+            orderEntity.setName(orderDto.getName());
+            orderEntity.setPhone(orderDto.getPhone());
+            orderEntity.setAddress(orderDto.getAddress());
+            orderEntity.setPinCode(orderDto.getPinCode());
+            orderEntity.setAvailableDate(orderDto.getAvailableDate());
+            orderEntity.setAvailableTime(orderDto.getAvailableTime());
+            orderEntity.setServiceProvider(serviceProvider);
+            return orderRepository.save(orderEntity);
+        }
+        return null;
+    }
+
+    public void updateOrderStatus(Integer orderId, String status) {
+        // Implementation
+    }
+
+    public void sendAcknowledgmentEmail(Integer orderId) {
+        // Implementation
+    }
+}

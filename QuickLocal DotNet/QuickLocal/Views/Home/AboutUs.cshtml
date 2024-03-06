@@ -1,0 +1,168 @@
+﻿
+@{
+    ViewBag.Title = "About Us";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #EBEDEF;
+        }
+
+        .about-us {
+            background-color: #f0f0f0;
+            padding: 20px;
+        }
+
+        .carousel-container {
+            /* Add your carousel container styles here */
+        }
+
+        .mission-values {
+            /* Add your mission values container styles here */
+        }
+
+        .team-h {
+            /* Add your team heading styles here */
+        }
+        /* Add more styles as needed */
+    </style>
+</head>
+<body>
+<div class="about-us" style="background-color: #f0f0f0; padding: 20px;">
+    <div class="container mx-auto text-center" style="box-shadow: 0 2px 18px rgba(0,0,0,0.2); margin: 0 10px; background-color: white; padding: 20px;">
+        <h2 class="mb-4">Who we are</h2>
+        <p>
+            Urban Company is a technology platform offering a variety of services at home. Customers use our platform to book services such as beauty treatments, haircuts, massage therapy, cleaning, plumbing, carpentry, appliance repair, painting, etc. These services are delivered in the comfort of their home and at a time of their choosing. We promise our customers a high-quality, standardized, and reliable service experience. To fulfill this promise, we work closely with our hand-picked service partners, enabling them with technology, training, products, tools, financing, insurance, and brand, helping them succeed and deliver on this promise.
+        </p>
+    </div>
+
+    <div class="carousel-container">
+        <!-- Add your carousel content here -->
+    </div>
+
+    <div class="mission-values" style="box-shadow: 0 2px 18px rgba(0,0,0,0.2); margin: 0 13px; margin-top: 25px; background-color: white; padding: 20px;">
+        <div class="row">
+            <div class="col-md-6" style="padding-top: 13px;">
+                <h2>Our Mission and Values</h2>
+                <p>
+                    @Html.Raw("At LensJoy, our mission is to provide high-quality eyewear to our customers with innovative technology and exceptional service. We believe in making eyewear accessible, affordable, and fashionable for everyone.<br>An aim to provide every Indian access to high-quality designer glasses without shelling out their pocket.")
+                </p>
+                <ul class="values-list">
+                    <li>Customer Satisfaction</li>
+                    <li>Innovation</li>
+                    <li>Accessibility</li>
+                </ul>
+            </div>
+
+            <div class="col-md-6 img">
+                <img src="~/Img/AboutUs/img.jpg" class="img-fluid" alt="LensJoy Sunglasses" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<h3 class="team-h contact-text" style="text-align: center; margin-top: 35px;">OUR TEAM</h3>
+
+<div class="row row-cols-1 row-cols-md-3 g-4 mx-auto">
+    <div class="col mb-3">
+        <div class="card" style="width: 16rem; height: auto; margin: 0.5rem; box-shadow: 0 2px 18px rgba(0,0,0,0.2);">
+            <img src="~/Img/Team/NK.png" class="card-img-top" style="height: 270px; width: 100%; object-fit: cover;" alt="Nayan Khade" />
+            <div class="card-body">
+                <h5 class="card-title">Nayan Khade</h5>
+                <p class="card-text">Student at CDAC Juhu</p>
+                <div class="d-flex justify-content-center mx-auto fab-icon">
+                    <a href="https://www.instagram.com/instagram/" target="_blank" rel="noopener noreferrer" class="mx-2">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="www.linkedin.com/in/aishwarya-pusadkar-70a4b11b7" target="_blank" rel="noopener noreferrer" class="mx-2">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col mb-3">
+        <div class="card" style="width: 16rem; height: auto; margin: 0.5rem; box-shadow: 0 2px 18px rgba(0,0,0,0.2);">
+            <img src="~/Img/Team/S-C.png" class="card-img-top" style="height: 270px; width: 100%; object-fit: cover;" alt="Nayan Khade" />
+            <div class="card-body">
+                <h5 class="card-title">Samiksha Choudhari</h5>
+                <p class="card-text">Student at CDAC Kharghar</p>
+                <div class="d-flex justify-content-center mx-auto fab-icon">
+                    <a href="https://www.instagram.com/instagram/" target="_blank" rel="noopener noreferrer" class="mx-2">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="www.linkedin.com/in/aishwarya-pusadkar-70a4b11b7" target="_blank" rel="noopener noreferrer" class="mx-2">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col mb-3">
+        <div class="card" style="width: 16rem; height: auto; margin: 0.5rem; box-shadow: 0 2px 18px rgba(0,0,0,0.2);">
+            <img src="~/Img/Team/SN.png" class="card-img-top" style="height: 270px; width: 100%; object-fit: cover;" alt="Nayan Khade" />
+            <div class="card-body">
+                <h5 class="card-title">Shubham Nangare</h5>
+                <p class="card-text">Student at CDAC Juhu</p>
+                <div class="d-flex justify-content-center mx-auto fab-icon">
+                    <a href="https://www.instagram.com/instagram/" target="_blank" rel="noopener noreferrer" class="mx-2">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="www.linkedin.com/in/aishwarya-pusadkar-70a4b11b7" target="_blank" rel="noopener noreferrer" class="mx-2">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col mb-3">
+        <div class="card" style="width: 16rem; height: auto; margin: 0.5rem; box-shadow: 0 2px 18px rgba(0,0,0,0.2);">
+            <img src="~/Img/Team/SW.png" class="card-img-top" style="height: 270px; width: 100%; object-fit: cover;" alt="Nayan Khade" />
+            <div class="card-body">
+                <h5 class="card-title">Sumit Wagh</h5>
+                <p class="card-text">Student at CDAC Kharghar</p>
+                <div class="d-flex justify-content-center mx-auto fab-icon">
+                    <a href="https://www.instagram.com/instagram/" target="_blank" rel="noopener noreferrer" class="mx-2">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="www.linkedin.com/in/aishwarya-pusadkar-70a4b11b7" target="_blank" rel="noopener noreferrer" class="mx-2">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col mb-3">
+        <div class="card" style="width: 16rem; height: auto; margin: 0.5rem; box-shadow: 0 2px 18px rgba(0,0,0,0.2);">
+            <img src="~/Img/Team/ZM.png" class="card-img-top" style="height: 270px; width: 100%; object-fit: cover;" alt="Nayan Khade" />
+            <div class="card-body">
+                <h5 class="card-title">Zeenat Mariyam</h5>
+                <p class="card-text">Student at CDAC Kharghar</p>
+                <div class="d-flex justify-content-center mx-auto fab-icon">
+                    <a href="https://www.instagram.com/instagram/" target="_blank" rel="noopener noreferrer" class="mx-2">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="www.linkedin.com/in/aishwarya-pusadkar-70a4b11b7" target="_blank" rel="noopener noreferrer" class="mx-2">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Repeat the above block for other team members -->
+
+</div>
+</body>
+</html>
+
+@section Scripts {
+    <!-- Include your scripts here if needed -->
+}

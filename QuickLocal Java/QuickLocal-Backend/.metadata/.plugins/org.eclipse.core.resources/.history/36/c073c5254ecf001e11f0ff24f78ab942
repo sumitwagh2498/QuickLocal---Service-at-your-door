@@ -1,0 +1,15 @@
+// UserOrdersRepository.java
+
+package com.quicklocal.repository;
+
+import com.quicklocal.model.ServicesModel;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
+@Repository
+public interface UserOrdersRepository extends JpaRepository<ServicesModel, Long> {
+    
+    List<ServicesModel> findByPinCode(String pinCode);
+}

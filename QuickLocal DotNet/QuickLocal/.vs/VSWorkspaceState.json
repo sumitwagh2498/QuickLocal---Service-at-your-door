@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\Controllers",
+    "\\Models",
+    "\\Views",
+    "\\Views\\ServiceBookings",
+    "\\Views\\Shared"
+  ],
+  "SelectedNode": "\\Controllers\\ServiceBookingController.cs",
+  "PreviewInSolutionExplorer": false
+}

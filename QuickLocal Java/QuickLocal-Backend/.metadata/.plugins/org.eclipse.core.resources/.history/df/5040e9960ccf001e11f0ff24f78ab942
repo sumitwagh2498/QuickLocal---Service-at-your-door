@@ -1,0 +1,36 @@
+package com.quicklocal.controller;
+
+import com.quicklocal.model.Order;
+import com.quicklocal.service.OrderService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/service-provider/orders")
+@CrossOrigin // Update with your frontend server's URL
+public class OrderManageByServiceProviderController {
+
+    @Autowired
+    private OrderService orderService;
+
+    @GetMapping("/{serviceProviderId}")
+    public ResponseEntity<List<Order>> getOrdersByServiceProviderId(@PathVariable Integer serviceProviderId) {
+        List<Order> orders = orderService.getOrdersByServiceProviderId(serviceProviderId);
+        return new ResponseEntity<>(orders, HttpStatus.OK);
+    }
+
+    @PutMapping("/reject/{orderId}")
+    public ResponseEntity<String> rejectOrder(@PathVariable Integer orderId) {
+        try {
+            orderService.rejectOrder(orderId);
+            return ResponseEntity.ok("Order rejected successfully!");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Error rejecting order: " + e.getMessage());
+        }
+    }
+}

@@ -1,0 +1,17 @@
+package com.quicklocal.repository;
+
+import com.quicklocal.model.ServicesModel;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface ServicesRepository extends JpaRepository<ServicesModel, Integer> {
+    // You can add custom query methods here if needed
+	
+	 List<ServicesModel> findByServiceAndCity(String service, String city);
+	    List<ServicesModel> findByService(String service);
+	    List<ServicesModel> findByCity(String city);
+}

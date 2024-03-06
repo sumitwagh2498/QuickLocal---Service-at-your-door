@@ -1,0 +1,5 @@
+package com.quicklocal.model;
+
+public class Order {
+
+}

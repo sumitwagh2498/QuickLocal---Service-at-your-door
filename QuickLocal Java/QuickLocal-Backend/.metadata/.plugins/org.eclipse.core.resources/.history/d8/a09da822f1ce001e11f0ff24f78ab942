@@ -1,0 +1,12 @@
+package com.quicklocal.dto;
+
+public class OrderDto {
+    private String name;
+    private String phone;
+    private String address;
+    private String pinCode;
+    private String availableDate;
+    private String availableTime;
+
+    // Getters and setters
+}

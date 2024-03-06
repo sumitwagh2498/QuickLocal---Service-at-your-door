@@ -1,0 +1,9 @@
+package com.quicklocal.service;
+
+public class ServicesService {
+
+	public void update(Customer customer) {
+		customerRepository.save(customer);
+	}
+	
+}

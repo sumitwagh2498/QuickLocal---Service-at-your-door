@@ -1,0 +1,48 @@
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
+
+@Service
+public class ServicesService {
+
+    @Autowired
+    private ServicesRepository servicesRepository;
+
+    public ServicesModel saveService(ServicesDto servicesDto, MultipartFile photo) throws IOException {
+        ServicesModel serviceModel = new ServicesModel();
+        // Map other fields
+        String photoPath = savePhoto(photo);
+        serviceModel.setPhotoPath(photoPath);
+
+        return servicesRepository.save(serviceModel);
+    }
+
+    private String savePhoto(MultipartFile photo) throws IOException {
+        // Specify the directory where you want to store the uploaded files
+        String uploadDir = "path/to/your/upload/directory";
+
+        // Create the directory if it doesn't exist
+        File uploadDirFile = new File(uploadDir);
+        if (!uploadDirFile.exists()) {
+            uploadDirFile.mkdirs();
+        }
+
+        // Generate a unique file name (you may use UUID or any other strategy)
+        String fileName = System.currentTimeMillis() + "_" + photo.getOriginalFilename();
+
+        // Construct the full file path
+        Path filePath = uploadDirFile.toPath().resolve(fileName);
+
+        // Copy the photo content to the specified file
+        Files.copy(photo.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
+
+        // Return the file path where the photo is stored
+        return filePath.toString();
+    }
+}

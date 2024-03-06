@@ -1,0 +1,19 @@
+package com.quicklocal.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.quicklocal.model.ServicesModel;
+import com.quicklocal.repository.ServicesRepository;
+
+@Service
+public class ServicesService {
+
+	@Autowired
+	private ServicesRepository servicesRepository;
+	
+	public void update(ServicesModel servicesModel) {
+		servicesRepository.save(servicesModel);
+	}
+	
+}

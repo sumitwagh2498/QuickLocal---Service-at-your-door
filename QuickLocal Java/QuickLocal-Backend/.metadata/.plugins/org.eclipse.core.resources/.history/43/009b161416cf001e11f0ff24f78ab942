@@ -1,0 +1,42 @@
+package com.quicklocal.service;
+
+import com.quicklocal.model.Email;
+import com.quicklocal.model.Order;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.stereotype.Service;
+
+@Service
+public class EmailService {
+
+    @Autowired
+    private JavaMailSender javaMailSender;
+
+    @Autowired
+    private OrderService orderService; // Assuming you have an OrderService
+
+    public void sendEmail(Integer orderId) {
+        Order order = orderService.getOrderById(orderId); // Fetch order details by ID
+
+        if (order != null) {
+            // Create an Email object with the required details
+            Email email = new Email();
+            email.setRecipient(order.getEmail()); // Set recipient email
+            email.setSubject("Your Order Details"); // Set subject
+            email.setBody("Your order details: " + order.getDescription()); // Set body
+
+            // Send the email
+            sendEmail(email);
+        }
+    }
+
+    private void sendEmail(Email email) {
+        SimpleMailMessage mailMessage = new SimpleMailMessage();
+        mailMessage.setTo(email.getRecipient());
+        mailMessage.setSubject(email.getSubject());
+        mailMessage.setText(email.getBody());
+
+        javaMailSender.send(mailMessage);
+    }
+}

@@ -1,0 +1,120 @@
+﻿@model QuickLocal.Models.AddService
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #EBEDEF;
+        }
+        .btn-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+            .btn-container a {
+                display: inline-block;
+                margin-right: 10px;
+                text-decoration: none;
+                padding: 8px 15px;
+                border: 1px solid #007bff;
+                color: #007bff;
+                border-radius: 5px;
+                transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+            }
+
+                .btn-container a:hover {
+                    background-color: #0056b3;
+                    color: #fff;
+                }
+
+        /* Centering the card horizontally */
+        .center-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Adjust the height as needed */
+        }
+
+        /* Adding shadow to the card */
+        .card {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease-in-out;
+        }
+
+            .card:hover {
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            }
+    </style>
+</head>
+<body>
+
+    <div class="center-content">
+        <div class="card">
+            <div class="card-body">
+
+                <h4 class="card-title">Details</h4>
+
+                <hr />
+
+                <dl class="row">
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.NameOfProvider)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.NameOfProvider)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Phone)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Phone)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Email)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Email)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Services)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Services)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Address)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Address)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.City)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.City)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.PinCode)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.PinCode)
+                    </dd>
+                </dl>
+
+                <div class="btn-container">
+                    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a>
+                    <a asp-action="Index">Back to List</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,125 @@
+﻿@model IEnumerable<QuickLocal.Models.ServiceBooking>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #EBEDEF;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            margin-bottom: 20px; /* Apply margin 20px to bottom of the page */
+        }
+
+        /* Updated styles to display cards in a single row */
+        .card {
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: inline-block; /* Display cards in a single row */
+            margin-right: 20px; /* Add some space between cards */
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .btn {
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+            .btn-primary:hover {
+                background-color: #0056b3;
+                border-color: #0056b3;
+            }
+
+        .status-dropdown-container {
+            margin-top: 10px;
+        }
+
+            .status-dropdown-container select {
+                width: 100%;
+                padding: 10px;
+                border-radius: 5px;
+                border: 1px solid #007bff; /* Use btn-primary color for border */
+                background-color: #007bff; /* Use btn-primary color for background */
+                color: #fff; /* Text color white */
+                font-size: 16px;
+                transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+                cursor: pointer; /* Change cursor on hover */
+            }
+
+                .status-dropdown-container select option {
+                    background-color: #007bff; /* Use btn-primary color for options background */
+                    color: #fff; /* Text color white */
+                }
+
+                .status-dropdown-container select:hover {
+                    background-color: #0056b3; /* Darker shade of btn-primary on hover */
+                }
+
+                .status-dropdown-container select:focus {
+                    outline: none; /* Remove focus outline */
+                    border-color: #0056b3; /* Darker shade of btn-primary on focus */
+                }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Index</h1>
+
+        @if (Model.Any())
+        {
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    <div class="col-md-4 mb-4">
+                        <!-- Use Bootstrap grid system -->
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">@item.Name</h5>
+                                <p class="card-text">Phone: @item.Phone</p>
+                                <p class="card-text">Address: @item.Address</p>
+                                <p class="card-text">Pin Code: @item.PinCode</p>
+                                <p class="card-text">Email: @item.Email</p>
+                                <p class="card-text">Available Date: @item.AvailableDate.ToShortDateString()</p>
+                                <p class="card-text">Available Time: @item.AvailableTime</p>
+                                <p class="card-text">Status: @item.Status</p>
+
+                                <a asp-action="BookingUpdateBySp" asp-route-id = "@item.ID">Update</a>
+
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+        else
+        {
+            <p>No data available.</p>
+        }
+    </div>
+
+    <script>
+        function goToPage(pageNumber) {
+            window.location.href = "/ServiceBookings/Index?pageNumber=" + pageNumber;
+        }
+    </script>
+</body>
+</html>
+

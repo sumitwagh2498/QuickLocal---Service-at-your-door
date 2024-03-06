@@ -1,0 +1,21 @@
+/* ServiceHelp.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Afacad:wght@500&family=Lato&family=Open+Sans:wght@400;500&family=Roboto&family=Roboto+Condensed&family=Ubuntu:wght@300;400;500&display=swap');
+
+.container .ser-title {
+  text-align: center;
+  margin: 20px 0;
+  font-weight: 600;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.services {
+  margin: 20px 15px 50px;
+  box-shadow: 0 10px 17px rgba(34, 34, 34, 0.4);
+  border-radius: 20px;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.services:hover {
+  box-shadow: 0 15px 25px rgba(34, 34, 34, 0.6);
+}
